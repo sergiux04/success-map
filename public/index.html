@@ -515,8 +515,19 @@
     <script>
 
 // Plan configurations with affiliate tracking
-// Default Whop plan ID for Premium Package
-const DEFAULT_PLAN_ID = 'MgbYslaKAwahW';
+// Plan configurations with affiliate tracking
+const plans = {
+    premium: {
+        default: 'MgMR63xOPLk8z', // Default Whop plan ID for Premium Package
+        affiliateLinks: {
+            'moneydaily': 'MgMR63xOPLk8z', // Example for affiliate 'moneydaily' (use same plan ID if Whop tracks via 'a' param)
+            'aff1': 'PREMIUM_AFF1_ID', // Replace with actual Whop affiliate plan IDs
+            'aff2': 'PREMIUM_AFF2_ID',
+            'john_doe': 'PREMIUM_JOHN_DOE_ID' // Example for a specific affiliate
+            // Add more affiliate codes and their corresponding Whop plan IDs as needed
+        }
+    }
+};
 
 // Get affiliate code from URL path (e.g., successmap.club/moneydaily)
 function getAffiliateCode() {
@@ -524,10 +535,18 @@ function getAffiliateCode() {
     return pathSegments.length > 0 ? pathSegments[0] : ''; // Returns the first path segment after the domain
 }
 
-// Redirect to Whop checkout with affiliate code, matching the structure: https://whop.com/checkout/plan_MgMR63xOPLk8z?d2c=true&a=value
+// Redirect to checkout with appropriate plan ID based on affiliate code, matching the Whop structure
 function redirectToCheckout(planType) {
     const affiliateCode = getAffiliateCode();
-    const baseUrl = `https://whop.com/checkout/plan_${DEFAULT_PLAN_ID}/`;
+    const planConfig = plans[planType];
+    let planId = planConfig.default;
+
+    if (affiliateCode && planConfig.affiliateLinks[affiliateCode]) {
+        planId = planConfig.affiliateLinks[affiliateCode]; // Use affiliate-specific plan ID if available
+    }
+
+    // Construct the checkout URL with affiliate tracking, matching your example (d2c=true&a=affiliatecode)
+    const baseUrl = `https://whop.com/checkout/plan_${planId}/`;
     window.location.href = affiliateCode ? `${baseUrl}?d2c=true&a=${encodeURIComponent(affiliateCode)}` : baseUrl;
 }
 
