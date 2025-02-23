@@ -56,7 +56,7 @@ a:hover {
 .btn-primary {
     padding: 0.8rem 2rem;
     font-size: 1.2rem;
-    color: #000;
+    color: #121212;
     border-radius: 10px;
     background: linear-gradient(135deg, #FFD700, #FFB800, #FF8C00);
     box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
@@ -77,11 +77,11 @@ a:hover {
     padding: 1rem 0;
     z-index: 1000;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease; /* Smooth slide transition */
+    transition: transform 0.3s ease;
 }
 
 .navbar.hidden {
-    transform: translateY(-100%); /* Slides the navbar up out of view */
+    transform: translateY(-100%);
 }
 
 .navbar-container {
@@ -190,8 +190,6 @@ a:hover {
     }
 }
 
-/* [Keep all your other existing CSS sections unchanged] */
- 
 /* Hero Section */
 .hero-section {
     background: linear-gradient(145deg, rgba(15, 15, 15, 0.8), rgba(26, 26, 26, 0.8)), url('../img/map.png') no-repeat center center/cover;
@@ -231,6 +229,12 @@ a:hover {
     padding: 0.5rem 1rem;
     border-radius: 8px;
     background: rgba(255, 215, 0, 0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.hero-section .step span:hover {
+    transform: scale(1.05);
 }
 
 .hero-section .arrow-down {
@@ -294,7 +298,93 @@ a:hover {
     box-shadow: 200px 100px 5px rgba(255, 215, 0, 0.05), 400px 200px 5px rgba(255, 215, 0, 0.05);
 }
 
-/* Problem Statement (Journey Map) */
+/* Hero Section Button */
+.btn-hero {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    font-size: 1.25rem;
+    color: #121212;
+    background: linear-gradient(135deg, #FFD700 0%, #FFB800 70%, #FF8C00 100%);
+    border-radius: 12px;
+    border: 2px solid #FFD700;
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    z-index: 1;
+}
+
+.btn-hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+    z-index: -1;
+}
+
+.btn-hero:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+    color: #121212;
+    text-decoration: none;
+}
+
+.btn-hero:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-hero:active {
+    transform: translateY(1px);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+}
+
+.hero-section .btn-hero {
+    margin-top: 2.5rem;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 6rem 0;
+    }
+    .hero-section h1 {
+        font-size: 3.5rem;
+    }
+    .hero-section .step span {
+        font-size: 1.5rem;
+    }
+    .btn-hero {
+        padding: 0.8rem 2rem;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+    .hero-section .step span {
+        font-size: 1.2rem;
+    }
+    .btn-hero {
+        padding: 0.7rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* Problem Statement */
 .problem-statement {
     background: linear-gradient(145deg, #0f0f0f 0%, #1a1a1a 100%);
     padding: 6rem 0;
@@ -313,7 +403,6 @@ a:hover {
     opacity: 0.1;
     transform: rotate(-15deg);
     animation: twinkle 4s infinite ease-in-out;
-    pointer-events: none;
 }
 
 .problem-statement::after {
@@ -326,7 +415,6 @@ a:hover {
     opacity: 0.1;
     transform: rotate(15deg);
     animation: twinkle 4s infinite ease-in-out 2s;
-    pointer-events: none;
 }
 
 .problem-statement h2 {
@@ -335,8 +423,7 @@ a:hover {
     margin-bottom: 4rem;
     color: #FFD700;
     font-family: "Jersey 20", serif;
-    text-shadow: 0 4px 15px rgba(255, 215, 0, 0.7), 0 0 25px rgba(255, 215, 0, 0.5);
-    animation: fadeInUp 1.5s ease-out;
+    text-shadow: 0 4px 15px rgba(255, 215, 0, 0.7);
 }
 
 .problem-statement .problem-journey {
@@ -346,7 +433,6 @@ a:hover {
     max-width: 1200px;
     margin: 0 auto;
     position: relative;
-    z-index: 1;
 }
 
 .problem-statement .problem-column {
@@ -365,51 +451,36 @@ a:hover {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4));
     border-radius: 20px;
     padding: 2.5rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.2);
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease;
     width: 100%;
     max-width: 400px;
-    animation: slideIn 1s ease-out backwards;
 }
-
-.problem-statement .problem-step:nth-child(2) { animation-delay: 0.3s; }
-.problem-statement .problem-step:nth-child(3) { animation-delay: 0.6s; }
-.problem-statement .problem-step:nth-child(4) { animation-delay: 0.9s; }
 
 .problem-statement .problem-step:hover {
     transform: translateY(-15px);
-    box-shadow: 0 15px 35px rgba(255, 215, 0, 0.4), 0 0 30px rgba(255, 215, 0, 0.3);
 }
 
 .problem-statement .problem-icon-wrapper {
     position: relative;
-    width: 400px; /* Increased from 350px for bigger images */
-    height: 400px; /* Increased for larger, square images */
+    width: 400px;
+    height: 400px;
     margin: 0 auto 2.5rem;
     overflow: hidden;
-    border-radius: 20px; /* Slightly rounder for elegance */
-    border: 2px solid rgba(255, 215, 0, 0.3); /* Subtle gold border */
-    background: radial-gradient(circle, rgba(255, 215, 0, 0.1), rgba(0, 0, 0, 0));
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 215, 0, 0.15);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
 }
 
 .problem-statement .problem-icon {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.95) contrast(1.1) saturate(1.2); /* Enhanced vibrancy */
-    transition: transform 0.4s ease, filter 0.4s ease;
-}
-
-.problem-statement .problem-step:hover .problem-icon-wrapper {
-    transform: scale(1.05); /* Slight zoom on hover */
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 35px rgba(255, 215, 0, 0.25);
+    transition: transform 0.4s ease;
 }
 
 .problem-statement .problem-step:hover .problem-icon {
-    filter: brightness(1.1) contrast(1.3) saturate(1.3); /* Brighter and more vivid on hover */
-    transform: scale(1.1); /* Zoom effect for eye appeal */
+    transform: scale(1.1);
 }
 
 .problem-statement .image-overlay {
@@ -421,11 +492,10 @@ a:hover {
     background: radial-gradient(circle, rgba(255, 215, 0, 0.05) 0%, rgba(0, 0, 0, 0.5) 80%);
     opacity: 0;
     transition: opacity 0.4s ease;
-    z-index: 1;
 }
 
 .problem-statement .problem-step:hover .image-overlay {
-    opacity: 1; /* Subtle glow overlay on hover */
+    opacity: 1;
 }
 
 .problem-statement h3 {
@@ -433,17 +503,11 @@ a:hover {
     color: #FFD700;
     font-family: "Jersey 20", serif;
     margin-bottom: 0.8rem;
-    text-shadow: 0 3px 12px rgba(255, 215, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.5);
-    animation: glow 2.5s infinite alternate;
 }
 
 .problem-statement p {
     font-size: 1.3rem;
     color: #ffffff;
-    font-family: "Roboto", sans-serif;
-    line-height: 1.6;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
-    animation: pulseText 3.5s infinite ease-in-out;
 }
 
 .problem-statement .journey-connector {
@@ -454,53 +518,6 @@ a:hover {
     width: 4px;
     height: 6rem;
     background: linear-gradient(90deg, #FFD700, #FFB800);
-    z-index: 0;
-    animation: pulseLine 3s infinite ease-in-out;
-}
-
-.problem-statement .problem-step:last-child .journey-connector {
-    display: none;
-}
-
-@keyframes pulseLine {
-    0% { height: 6rem; opacity: 0.8; }
-    50% { height: 6.5rem; opacity: 1; }
-    100% { height: 6rem; opacity: 0.8; }
-}
-
-.problem-statement .journey-dots {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-}
-
-.problem-statement .journey-dots::before,
-.problem-statement .journey-dots::after {
-    content: "";
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background: #FFD700;
-    border-radius: 50%;
-    animation: dotPulse 3s infinite ease-in-out;
-    box-shadow: 
-        50% 20% 0 rgba(255, 215, 0, 0.3),
-        50% 50% 0 rgba(255, 215, 0, 0.3),
-        50% 80% 0 rgba(255, 215, 0, 0.3);
-}
-
-.problem-statement .journey-dots::after {
-    animation-delay: 1.5s;
-}
-
-@keyframes dotPulse {
-    0% { transform: scale(1); opacity: 0.5; }
-    50% { transform: scale(1.2); opacity: 1; }
-    100% { transform: scale(1); opacity: 0.5; }
 }
 
 .problem-statement .problem-call-to-action {
@@ -509,8 +526,7 @@ a:hover {
     padding: 2.5rem;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
     border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.2);
-    animation: fadeInUp 1.5s ease-out 1s backwards;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 }
 
 .problem-statement .problem-call-to-action h3 {
@@ -518,173 +534,24 @@ a:hover {
     color: #FFD700;
     font-family: "Jersey 20", serif;
     margin-bottom: 1.5rem;
-    text-shadow: 0 4px 15px rgba(255, 215, 0, 0.7), 0 0 25px rgba(255, 215, 0, 0.5);
 }
 
-.problem-statement .problem-call-to-action p {
-    font-size: 1.3rem;
-    color: #ffffff;
-    margin-bottom: 2rem;
-}
-
-.problem-statement .btn-primary {
-    font-size: 1.2rem;
-    padding: 0.8rem 2rem;
-    background: linear-gradient(135deg, #FFD700, #FFB800);
-    color: #000;
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.6), 0 0 20px rgba(255, 215, 0, 0.4);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-family: "Roboto", sans-serif;
-    font-weight: 600;
-}
-
-.problem-statement .btn-primary:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.6);
-    background: linear-gradient(135deg, #FFB800, #FF8C00);
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
-    .problem-statement {
-        padding: 4rem 0;
-    }
-
-    .problem-statement h2 {
-        font-size: 2.8rem;
-    }
-
     .problem-statement .problem-journey {
         flex-direction: column;
-        gap: 4rem;
-        max-width: 600px;
-    }
-
-    .problem-statement .problem-column {
         align-items: center;
-        width: 100%;
-    }
-
-    .problem-statement .problem-step {
-        max-width: 350px;
-        padding: 2rem;
-    }
-
-    .problem-statement .problem-icon-wrapper {
-        width: 320px; /* Slightly smaller but still larger than original 300px */
-        height: 320px;
-    }
-
-    .problem-statement h3 {
-        font-size: 2rem;
-    }
-
-    .problem-statement p {
-        font-size: 1.1rem;
-    }
-
-    .problem-statement .journey-dots::before,
-    .problem-statement .journey-dots::after {
-        display: none;
-    }
-
-    .problem-statement .problem-call-to-action {
-        margin-top: 4rem;
-        padding: 2rem;
-    }
-
-    .problem-statement .problem-call-to-action h3 {
-        font-size: 2.5rem;
-    }
-
-    .problem-statement .problem-call-to-action p {
-        font-size: 1.1rem;
-    }
-
-    .problem-statement .btn-primary {
-        font-size: 1rem;
-        padding: 0.7rem 1.8rem;
     }
 }
 
-@media (max-width: 480px) {
-    .problem-statement h2 {
-        font-size: 2.2rem;
-    }
-
-    .problem-statement .problem-journey {
-        gap: 3rem;
-    }
-
-    .problem-statement .problem-step {
-        max-width: 300px;
-        padding: 1.5rem;
-    }
-
-    .problem-statement .problem-icon-wrapper {
-        width: 280px; /* Still larger than original 250px */
-        height: 280px;
-    }
-
-    .problem-statement h3 {
-        font-size: 1.8rem;
-    }
-
-    .problem-statement p {
-        font-size: 1rem;
-    }
-
-    .problem-statement .problem-call-to-action {
-        margin-top: 3rem;
-        padding: 1.5rem;
-    }
-
-    .problem-statement .problem-call-to-action h3 {
-        font-size: 2rem;
-    }
-
-    .problem-statement .btn-primary {
-        font-size: 0.9rem;
-        padding: 0.6rem 1.5rem;
-    }
+.problem-call-to-action .btn-primary {
+    margin-top: 2rem; /* Moves the button down by 1.5rem (24px) */
 }
 
-/* Animation Keyframes (unchanged from your original) */
-@keyframes glow {
-    0% { text-shadow: 0 3px 12px rgba(255, 215, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.5); }
-    100% { text-shadow: 0 3px 12px rgba(255, 215, 0, 0.7), 0 0 30px rgba(255, 215, 0, 0.7); }
-}
-
-@keyframes pulseText {
-    0% { opacity: 0.9; }
-    50% { opacity: 1; }
-    100% { opacity: 0.9; }
-}
-
-@keyframes twinkle {
-    0%, 100% { opacity: 0.1; }
-    50% { opacity: 0.15; }
-}
-
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideIn {
-    from { opacity: 0; transform: translateX(-50px); }
-    to { opacity: 1; transform: translateX(0); }
-}
 /* Solution Statement */
 .solution-statement {
     background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
     padding: 5rem 0;
     position: relative;
-    overflow: hidden;
 }
 
 .solution-statement .solution-content {
@@ -703,7 +570,6 @@ a:hover {
     color: #FFD700;
     font-family: 'Jersey 20', serif;
     margin-bottom: 2rem;
-    text-shadow: 0 2px 8px rgba(255, 215, 0, 0.2);
 }
 
 .solution-statement .solution-list {
@@ -731,7 +597,17 @@ a:hover {
     height: 500px;
     object-fit: cover;
     border-radius: 20px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 215, 0, 0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+    .solution-statement .solution-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .solution-statement .solution-image {
+        height: 400px;
+    }
 }
 
 /* Course Overview */
@@ -739,7 +615,6 @@ a:hover {
     background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
     padding: 5rem 0;
     position: relative;
-    overflow: hidden;
 }
 
 .course-overview h2 {
@@ -748,7 +623,6 @@ a:hover {
     color: #FFD700;
     font-family: 'Jersey 20', serif;
     margin-bottom: 3rem;
-    text-shadow: 0 2px 8px rgba(255, 215, 0, 0.2);
 }
 
 .course-overview .cards {
@@ -762,7 +636,7 @@ a:hover {
     border-radius: 15px;
     overflow: hidden;
     transition: transform 0.4s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 215, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 }
 
 .course-overview .card:hover {
@@ -784,7 +658,6 @@ a:hover {
     color: #FFD700;
     font-family: 'Jersey 20', serif;
     margin-bottom: 0.5rem;
-    text-shadow: 0 2px 6px rgba(255, 215, 0, 0.15);
 }
 
 /* Bonus Lessons */
@@ -792,7 +665,6 @@ a:hover {
     background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
     padding: 5rem 0;
     position: relative;
-    overflow: hidden;
 }
 
 .bonus-lessons header {
@@ -804,7 +676,6 @@ a:hover {
     font-size: 3rem;
     color: #FFD700;
     font-family: 'Jersey 20', serif;
-    text-shadow: 0 2px 8px rgba(255, 215, 0, 0.2);
 }
 
 .bonus-lessons .subtitle {
@@ -822,7 +693,7 @@ a:hover {
     background: rgba(0, 0, 0, 0.3);
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 215, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 }
 
 .bonus-lessons .card-image-wrapper {
@@ -843,7 +714,6 @@ a:hover {
     font-size: 1.5rem;
     color: #FFD700;
     font-family: 'Jersey 20', serif;
-    text-shadow: 0 2px 6px rgba(255, 215, 0, 0.15);
 }
 
 .bonus-lessons .card-subtitle {
@@ -857,7 +727,6 @@ a:hover {
     background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
     padding: 5rem 0;
     position: relative;
-    overflow: hidden;
 }
 
 .super-bonus-lessons header {
@@ -869,7 +738,6 @@ a:hover {
     font-size: 3rem;
     color: #FFD700;
     font-family: 'Jersey 20', serif;
-    text-shadow: 0 2px 8px rgba(255, 215, 0, 0.2);
 }
 
 .super-bonus-lessons .cards {
@@ -884,7 +752,7 @@ a:hover {
     background: rgba(0, 0, 0, 0.3);
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 215, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 }
 
 .super-bonus-lessons .card-image {
@@ -918,51 +786,76 @@ a:hover {
 
 /* Why This Course Shines */
 .why-shines {
-    background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
-    padding: 5rem 0;
+    background: linear-gradient(135deg, #1c2526, #121212);
+    padding: 6rem 0;
+    color: #f5f5f5;
     position: relative;
-    overflow: hidden;
-}
-
-.why-shines header {
-    text-align: center;
-    margin-bottom: 3rem;
 }
 
 .why-shines h2 {
     font-size: 3rem;
     color: #FFD700;
     font-family: 'Jersey 20', serif;
-    text-shadow: 0 2px 8px rgba(255, 215, 0, 0.2);
-}
-
-.why-shines .feature-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.why-shines .feature-card {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 15px;
-    padding: 1.5rem;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 215, 0, 0.1);
+    margin-bottom: 4rem;
 }
 
-.why-shines .feature-image {
+.why-shines .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.why-shines .feature {
+    text-align: center;
+    transition: transform 0.4s ease;
+}
+
+.why-shines .feature:hover {
+    transform: translateY(-10px);
+}
+
+.why-shines .feature-wrapper {
+    position: relative;
+    margin-bottom: 1.2rem;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.why-shines .feature-img {
     width: 100%;
-    height: 200px;
+    height: 160px;
     object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 1rem;
+    transition: transform 0.4s ease;
 }
 
-.why-shines .feature-content h3 {
-    font-size: 1.5rem;
+.why-shines .feature:hover .feature-img {
+    transform: scale(1.08);
+}
+
+.why-shines .feature-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+    opacity: 0.7;
+}
+
+.why-shines .feature h3 {
+    font-size: 1.6rem;
     color: #FFD700;
     font-family: 'Jersey 20', serif;
-    text-shadow: 0 2px 6px rgba(255, 215, 0, 0.15);
+    margin-bottom: 0.6rem;
+}
+
+@media (max-width: 768px) {
+    .why-shines .feature-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Pricing Options */
@@ -970,7 +863,6 @@ a:hover {
     background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
     padding: 5rem 0;
     position: relative;
-    overflow: hidden;
 }
 
 .pricing-options header {
@@ -983,16 +875,12 @@ a:hover {
     color: #ffffff;
     font-family: 'Jersey 20', serif;
     text-transform: uppercase;
-    margin-bottom: 1rem;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .pricing-options .subtitle {
     font-size: 1.5rem;
     color: #aaaaaa;
-    font-family: 'Roboto', sans-serif;
     font-style: italic;
-    margin-bottom: 2rem;
 }
 
 .pricing-options .pricing-cards {
@@ -1008,18 +896,15 @@ a:hover {
     border-radius: 15px;
     padding: 2rem;
     text-align: center;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-    max-width: 400px;
+    transition: transform 0.4s ease;
+    max-width: 500px;
     width: 100%;
 }
 
 .pricing-options .pricing-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
 }
 
-/* Do Nothing Card (Left Side) */
 .pricing-options .do-nothing {
     background: rgba(30, 30, 30, 0.9);
     color: #ffffff;
@@ -1036,22 +921,18 @@ a:hover {
     font-size: 2rem;
     color: #ffffff;
     font-family: 'Jersey 20', serif;
-    margin-bottom: 1rem;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 .pricing-options .do-nothing .description {
     font-size: 1.2rem;
     color: #aaaaaa;
     margin-bottom: 1.5rem;
-    font-style: italic;
 }
 
 .pricing-options .do-nothing .price {
     font-size: 1.5rem;
     color: #ffffff;
     margin-bottom: 1.5rem;
-    font-weight: 600;
 }
 
 .pricing-options .do-nothing .price-features {
@@ -1064,15 +945,6 @@ a:hover {
     font-size: 1rem;
     color: #cccccc;
     margin-bottom: 0.5rem;
-    padding-left: 1rem;
-    position: relative;
-}
-
-.pricing-options .do-nothing .price-features li::before {
-    content: "✔";
-    position: absolute;
-    left: 0;
-    color: #888;
 }
 
 .pricing-options .do-nothing .btn-secondary {
@@ -1081,17 +953,13 @@ a:hover {
     color: #ffffff;
     background: #555;
     border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.3s ease;
+    transition: background 0.3s ease;
 }
 
 .pricing-options .do-nothing .btn-secondary:hover {
     background: #777;
-    transform: scale(1.05);
 }
 
-/* Premium Card (Right Side - Unchanged but styled to match) */
 .pricing-options .premium {
     background: rgba(0, 0, 0, 0.8);
     color: #ffffff;
@@ -1102,8 +970,6 @@ a:hover {
     font-size: 2rem;
     color: #ffffff;
     font-family: 'Jersey 20', serif;
-    margin-bottom: 1rem;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 .pricing-options .premium .popular {
@@ -1118,20 +984,17 @@ a:hover {
     font-size: 1rem;
     color: #FFD700;
     font-style: italic;
-    margin-bottom: 0.5rem;
 }
 
 .pricing-options .premium .price {
     font-size: 2rem;
     margin-bottom: 1rem;
-    color: #ffffff;
 }
 
 .pricing-options .premium .old-price {
     color: #888;
     text-decoration: line-through;
     font-size: 1.2rem;
-    margin-right: 0.5rem;
 }
 
 .pricing-options .premium .price-features {
@@ -1144,107 +1007,20 @@ a:hover {
     font-size: 1rem;
     color: #cccccc;
     margin-bottom: 0.5rem;
-    padding-left: 1rem;
-    position: relative;
 }
 
-.pricing-options .premium .price-features li::before {
-    content: "✔";
-    position: absolute;
-    left: 0;
-    color: #FFD700;
-}
-
-.pricing-options .premium .highlight {
-    color: #FFD700;
-    font-weight: 600;
-}
-
-.pricing-options .premium .bonus {
-    color: #00BFFF;
-    font-style: italic;
-}
-
-.pricing-options .premium .community {
-    color: #FF4500;
-    font-weight: 600;
-}
-
-.pricing-options .premium .btn-primary {
-    padding: 0.8rem 2rem;
-    font-size: 1.2rem;
-    color: #000;
-    background: linear-gradient(135deg, #FFD700, #FF8C00);
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.pricing-options .premium .btn-primary:hover {
-    background: linear-gradient(135deg, #FF8C00, #FFD700);
-    transform: scale(1.05);
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
     .pricing-options .pricing-cards {
         flex-direction: column;
         gap: 2rem;
     }
-
-    .pricing-options .pricing-card {
-        max-width: 100%;
-    }
-
-    .pricing-options .choice-title {
-        font-size: 2.5rem;
-    }
-
-    .pricing-options .subtitle {
-        font-size: 1.2rem;
-    }
 }
 
-@media (max-width: 480px) {
-    .pricing-options .pricing-cards {
-        gap: 1.5rem;
-    }
-
-    .pricing-options .choice-title {
-        font-size: 2rem;
-    }
-
-    .pricing-options .subtitle {
-        font-size: 1rem;
-    }
-
-    .pricing-options .pricing-card {
-        padding: 1.5rem;
-    }
-
-    .pricing-options .pricing-card h3,
-    .pricing-options .premium .card-header h3 {
-        font-size: 1.5rem;
-    }
-
-    .pricing-options .premium .price,
-    .pricing-options .do-nothing .price {
-        font-size: 1.5rem;
-    }
-
-    .pricing-options .btn-primary,
-    .pricing-options .btn-secondary {
-        font-size: 1rem;
-        padding: 0.6rem 1.5rem;
-    }
-}
 /* FAQ Section */
 .faq-section {
     background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
     padding: 5rem 0;
     position: relative;
-    overflow: hidden;
 }
 
 .faq-section header {
@@ -1256,7 +1032,6 @@ a:hover {
     font-size: 3rem;
     color: #FFD700;
     font-family: 'Jersey 20', serif;
-    text-shadow: 0 2px 8px rgba(255, 215, 0, 0.2);
 }
 
 .faq-section .faq-accordion {
@@ -1268,7 +1043,6 @@ a:hover {
     background: rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     margin-bottom: 1rem;
-    overflow: hidden;
 }
 
 .faq-section .faq-question {
@@ -1284,8 +1058,6 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: background 0.3s ease;
-    text-shadow: 0 2px 6px rgba(255, 215, 0, 0.15);
 }
 
 .faq-section .faq-question:hover {
@@ -1307,17 +1079,11 @@ a:hover {
     transition: max-height 0.5s ease-out;
 }
 
-.faq-section .faq-answer[aria-hidden="false"] {
-    max-height: 200px;
-    padding: 1rem 1.5rem;
-}
-
 /* Footer */
 .footer {
     background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
     padding: 4rem 0;
     position: relative;
-    overflow: hidden;
 }
 
 .footer .footer-content {
@@ -1333,7 +1099,6 @@ a:hover {
     color: #FFD700;
     font-family: 'Jersey 20', serif;
     margin-bottom: 1rem;
-    text-shadow: 0 2px 8px rgba(255, 215, 0, 0.2);
 }
 
 .footer .footer-info {
@@ -1379,21 +1144,7 @@ a:hover {
     50% { transform: translateY(-5px); }
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .hero-section { padding: 6rem 0; }
-    .hero-section h1 { font-size: 3.5rem; }
-    .hero-section .step span { font-size: 1.5rem; }
-    .hero-section .btn-primary { font-size: 1rem; padding: 0.6rem 1.5rem; }
-    .problem-statement .problem-journey { flex-direction: column; align-items: center; }
-    .solution-statement .solution-content { flex-direction: column; text-align: center; }
-    .solution-statement .solution-image { height: 400px; }
-}
-
-@media (max-width: 480px) {
-    .hero-section h1 { font-size: 2.5rem; }
-    .hero-section .step span { font-size: 1.2rem; }
-    .problem-statement h2, .solution-statement h2, .course-overview h2 { font-size: 2rem; }
-    .pricing-options .pricing-cards { grid-template-columns: 1fr; }
-    .faq-section .faq-question { font-size: 1.1rem; }
+@keyframes twinkle {
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 0.15; }
 }
